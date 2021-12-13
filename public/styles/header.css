@@ -1,0 +1,10 @@
+.profile {
+  height: 400px;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: snow;
+  background-image: url("/images/axiom-pattern.png");
+}
