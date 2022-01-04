@@ -12,6 +12,7 @@ $(document).ready(function() {
     // allowing counter to find remaining count
     counter.text(charRemain);
 
+    // if counter is in the negatives, denote to user
     if (charRemain < 0) {
       counter.addClass("charError")
     } else {
