@@ -25,6 +25,11 @@ article.tweet header div {
   align-items: center;
 }
 
+article.tweet header p {
+  color: #8f8c8c;
+  font-weight: bold;
+}
+
 article.tweet footer {
   display: flex;
   flex-direction: row;
@@ -35,4 +40,8 @@ article.tweet footer {
 
 div.tweeticons i:hover {
   color: #DAA520;
+}
+
+#tweets-container {
+  width: 100%;
 }
