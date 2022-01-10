@@ -1,4 +1,4 @@
-console.log("Is this working?")
+console.log("Is this working?");
 
 $(document).ready(function() {
 
@@ -14,9 +14,9 @@ $(document).ready(function() {
 
     // if counter is in the negatives, denote to user
     if (charRemain < 0) {
-      counter.addClass("charError")
+      counter.addClass("charError");
     } else {
-      counter.removeClass("charError")
+      counter.removeClass("charError");
     }
   });
 });
