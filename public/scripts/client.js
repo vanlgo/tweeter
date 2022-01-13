@@ -5,30 +5,30 @@
  */
 
 // Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
+// const data = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": "https://i.imgur.com/73hZDYK.png"
+//       ,
+//       "handle": "@SirIsaac"
+//     },
+//     "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//     "created_at": 1461116232227
+//   },
+//   {
+//     "user": {
+//       "name": "Descartes",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@rd" },
+//     "content": {
+//       "text": "Je pense , donc je suis"
+//     },
+//     "created_at": 1461113959088
+//   }
+// ]
 
 const renderTweets = (tweets) => {
   for (tweet of tweets) {
@@ -42,10 +42,7 @@ const createTweetElement = (data) => {
   const handle = data["user"].handle;
   const avatar = data["user"].avatars;
   const content = data["content"].text;
-  const createDate = data["created_at"];
-  const today = new Date();
-  const msPerDay = 24 * 60 * 60 * 1000;
-  const createdAt = Math.round((today - createDate) / msPerDay);
+  const createdAt = timeago.format(data["created_at"]);
 
   let $tweet = `
   <article class="tweet">
@@ -58,7 +55,7 @@ const createTweetElement = (data) => {
   </header>
   <p>${content}</p>
   <footer>
-    <sub>${createdAt} days ago</sub>
+    <sub>${createdAt}</sub>
     <div class="tweeticons">
       <i class="fa-solid fa-flag"></i>
       <i class="fa-solid fa-retweet"></i>
@@ -69,6 +66,18 @@ const createTweetElement = (data) => {
 
 return $tweet;
 };
+
+const loadTweets = function() {
+  $.ajax("/tweets", {
+    method: "GET",
+    data: $(this).serialize(),
+    success: function(submit) {
+      renderTweets(submit);
+    }
+  })
+};
+
+loadTweets();
 
 $(document).ready(function() {
   console.log("ready this doc");
@@ -90,12 +99,8 @@ $(document).ready(function() {
         error: function(error) {
           console.log(error);
         }
-      });
+      })
     }
-
-    
   });
-
   renderTweets(data);
 });
-
