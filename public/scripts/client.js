@@ -15,6 +15,13 @@ const renderTweets = (tweets) => {
   }
 };
 
+// creating a function that stops scripting attacks
+const textEscape = (str) => {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const createTweetElement = (data) => {
   // creating timestamp
   const createdAt = timeago.format(data["created_at"]);
@@ -24,12 +31,12 @@ const createTweetElement = (data) => {
   <article class="tweet">
   <header>
     <div>
-      <img src="${data["user"].avatars}"> 
-      <h4>${data["user"].name}</h4>
+      <img src="${textEscape(data["user"].avatars)}"> 
+      <h4>${textEscape(data["user"].name)}</h4>
     </div>
-    <p>${data["user"].handle}</p>
+    <p>${textEscape(data["user"].handle)}</p>
   </header>
-  <p>${data["content"].text}</p>
+  <p>${textEscape(data["content"].text)}</p>
   <footer>
     <sub>${createdAt}</sub>
     <div class="tweeticons">
