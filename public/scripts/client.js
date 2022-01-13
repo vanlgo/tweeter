@@ -4,56 +4,32 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Fake data taken from initial-tweets.json
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png"
-//       ,
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd" },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   }
-// ]
 
 const renderTweets = (tweets) => {
-  for (tweet of tweets) {
+  // fixing duplication bug
+  $("#tweets-container").empty();
+  for (const tweet of tweets) {
     const thisTweet = createTweetElement(tweet);
-    $('#tweets-container').append(thisTweet);
+    // changed to post prior to all other data
+    $("#tweets-container").prepend(thisTweet);
   }
-}
+};
 
 const createTweetElement = (data) => {
-  const name = data["user"].name;
-  const handle = data["user"].handle;
-  const avatar = data["user"].avatars;
-  const content = data["content"].text;
+  // creating timestamp
   const createdAt = timeago.format(data["created_at"]);
 
+  // creating template for tweet
   let $tweet = `
   <article class="tweet">
   <header>
     <div>
-      <img src="${avatar}"> 
-      <h4>${name}</h4>
+      <img src="${data["user"].avatars}"> 
+      <h4>${data["user"].name}</h4>
     </div>
-    <p>${handle}</p>
+    <p>${data["user"].handle}</p>
   </header>
-  <p>${content}</p>
+  <p>${data["content"].text}</p>
   <footer>
     <sub>${createdAt}</sub>
     <div class="tweeticons">
@@ -64,30 +40,31 @@ const createTweetElement = (data) => {
   </footer>
 </article>`;
 
-return $tweet;
+  return $tweet;
 };
 
 const loadTweets = function() {
   $.ajax("/tweets", {
     method: "GET",
-    data: $(this).serialize(),
-    success: function(submit) {
-      renderTweets(submit);
+    success: function(data) {
+      renderTweets(data);
     }
-  })
+  });
 };
 
-loadTweets();
+
 
 $(document).ready(function() {
   console.log("ready this doc");
+  
+  loadTweets();
 
   $("#tweet-form").submit(function(event) {
     event.preventDefault();
 
-    if (!$("#tweet-text").val()) {
+    if (!$("#tweet-text").val()) { // checking for empty value
       return alert("Error, empty tweets cannot be posted");
-    } else if ($("#tweet-text").val().length > 140) {
+    } else if ($("#tweet-text").val().length > 140) { // checking for character limit overage
       return alert("Tweet not allowed to exceed 140 characters");
     } else {
       $.ajax("/tweets", {
@@ -95,12 +72,12 @@ $(document).ready(function() {
         data: $(this).serialize(),
         success: function(data) {
           console.log(data);
+          loadTweets();
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
-  });
-  renderTweets(data);
+  })
 });

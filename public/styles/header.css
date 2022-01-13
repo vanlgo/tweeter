@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: snow;
+  color: #ffffff;
+  background-color: #4056a1;
   background-image: url("/images/axiom-pattern.png");
 }

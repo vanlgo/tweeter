@@ -2,7 +2,7 @@ nav {
   color: #FFFFFF;
   height: 120px;
   width: 100%;
-  background-color: #4056a1;
+  /* background-color: #4056a1; */
   padding-left:  1.5em;
   padding-right:  1.5em;
   display: flex;
@@ -11,7 +11,7 @@ nav {
   align-items: flex-end;
   z-index: 1;
   position: fixed;
-  top: 0;
+  top: 0%;
 }
 
 .logo {

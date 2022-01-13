@@ -24,8 +24,8 @@ body {
 }
 
 .container {
-  padding-left: 5%;
-  padding-right: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
   background-color: #f4f1ec;
   display: flex;
   justify-content: center;
