@@ -70,9 +70,9 @@ $(document).ready(function() {
     event.preventDefault();
 
     if (!$("#tweet-text").val()) { // checking for empty value
-      return alert("Error, empty tweets cannot be posted");
+      $(".error-message").before('<i class="fas fa-exclamation-triangle"></i>').text("Error, empty tweets cannot be posted").after('<i class="fas fa-exclamation-triangle"></i>');
     } else if ($("#tweet-text").val().length > 140) { // checking for character limit overage
-      return alert("Tweet not allowed to exceed 140 characters");
+      $(".error-message").before('<i class="fas fa-exclamation-triangle"></i>').text("Tweet not allowed to exceed 140 characters").after('<i class="fas fa-exclamation-triangle"></i>');
     } else {
       $.ajax("/tweets", {
         method: "POST",
@@ -80,6 +80,7 @@ $(document).ready(function() {
         success: function(data) {
           console.log(data);
           loadTweets();
+          $("#tweet-text").val("")
         },
         error: function(error) {
           console.log(error);

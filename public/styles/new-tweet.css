@@ -38,3 +38,7 @@ button {
   font-style: italic;
   color: #FF0000;
 }
+
+.error-message {
+  color: #FF0000;
+}
