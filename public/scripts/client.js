@@ -70,6 +70,30 @@ const createTweetElement = (data) => {
 return $tweet;
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
+  console.log("ready this doc");
+
+  $("form.tweeting").submit(function (event) {
+
+    const tweetData = $(this).serialze();
+
+    event.preventDefault();
+
+    $.ajax({
+      url: "/tweets",
+      type: "POST",
+      data: tweetData,
+      dataType: "json",
+      success: (data) => {
+        console.log("this request succeeded and here's the data", data);
+      },
+      error: (error) => {
+        console.log("this request failed and this was the error", error);
+      },
+    })
+
+  });
+
   renderTweets(data);
-})
+});
+

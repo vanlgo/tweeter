@@ -38,6 +38,7 @@
   </head>
 
   <body>
+    
     <!-- Top nav bar (fixed) -->
     <nav>
       <span class="logo">Tweeter</span>
@@ -61,7 +62,7 @@
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-        <form action="/tweets" method="POST">
+        <form class="tweeting" action="/tweets" method="POST">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
           <div>
@@ -71,10 +72,8 @@
         </form>
       </section>
 
-<section id="tweets-container">
+      <section id="tweets-container">
   
     </main>
   </body>
 </html>
-
-
