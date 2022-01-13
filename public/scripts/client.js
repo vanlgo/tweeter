@@ -76,16 +76,24 @@ $(document).ready(function() {
   $("#tweet-form").submit(function(event) {
     event.preventDefault();
 
-    $.ajax("/tweets", {
-      method: "POST",
-      data: $(this).serialize(),
-      success: function(data) {
-        console.log(data);
-      },
-      error: function(error) {
-        console.log(error);
-      }
-    });
+    if (!$("#tweet-text").val()) {
+      return alert("Error, empty tweets cannot be posted");
+    } else if ($("#tweet-text").val().length > 140) {
+      return alert("Tweet not allowed to exceed 140 characters");
+    } else {
+      $.ajax("/tweets", {
+        method: "POST",
+        data: $(this).serialize(),
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    }
+
+    
   });
 
   renderTweets(data);
