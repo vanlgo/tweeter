@@ -4,7 +4,7 @@ Tweeter is a simple, single-page Twitter clone.
 
 This is a front-end exercise utilizing HTML, CSS, Ajax, and Jquery to mimic the front-end experience of scrolling and posting micro-blogs akin to the popular app, Twitter.
 
-
+(https://github.com/vanlgo/tweeter/blob/4c1c9d920d65926368268384bb0c7fded5e1673b/public/images/Screenshot%20from%202022-01-17%2014-50-52.png?raw=true))
 
 ## Features
 
