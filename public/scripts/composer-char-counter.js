@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $("#tweet-text").on("input", function() {
+  $("#tweet-text").on("input", function () {
     // checking how many characters are left in the counter
     let charRemain = 140 - $(this).val().length;
 

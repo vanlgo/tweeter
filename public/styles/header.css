@@ -1,12 +1,14 @@
-header {
-  margin-top: 120px;
+header.profile {
+  color: #ffffff;
+  background-color: #7c83e6;
+  background-image: url("/images/axiom-pattern.png");
   height: 400px;
-  width: inherit;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
-  background-color: #7c83e6;
-  background-image: url("/images/axiom-pattern.png");
+}
+
+.profile img {
+  margin-top: 25px;
 }

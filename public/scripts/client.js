@@ -4,17 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-
-const renderTweets = (tweets) => {
-  // fixing duplication bug
-  $("#tweets-container").empty();
-
-  for (const tweet of tweets) {
-    const thisTweet = createTweetElement(tweet);
-    $("#tweets-container").prepend(thisTweet);
-  }
-};
-
 // creating a function that stops scripting attacks
 const textEscape = (str) => {
   let div = document.createElement("div");
@@ -50,34 +39,43 @@ const createTweetElement = (data) => {
   return $tweet;
 };
 
-const loadTweets = function() {
+const renderTweets = (tweets) => {
+  // fixing duplication bug
+  $("#tweets-container").empty();
+
+  for (const tweet of tweets) {
+    const thisTweet = createTweetElement(tweet);
+    $("#tweets-container").prepend(thisTweet);
+  }
+};
+
+// visualizing tweets for 
+const loadTweets = function () {
   $.ajax("/tweets", {
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       renderTweets(data);
     }
   });
 };
 
-
-
-$(document).ready(function() {
+$(document).ready(function () {
   console.log("ready this doc");
-  
+
   loadTweets();
 
   $("#tweet-form").submit(function(event) {
     event.preventDefault();
 
     if (!$("#tweet-text").val()) { // checking for empty value
-      $(".error-message").before('<i class="fas fa-exclamation-triangle"></i>').text("Error, empty tweets cannot be posted").after('<i class="fas fa-exclamation-triangle"></i>');
+      $(".error-message").text("Error, empty tweets cannot be posted");
     } else if ($("#tweet-text").val().length > 140) { // checking for character limit overage
-      $(".error-message").before('<i class="fas fa-exclamation-triangle"></i>').text("Tweet not allowed to exceed 140 characters").after('<i class="fas fa-exclamation-triangle"></i>');
+      $(".error-message").text("Tweet not allowed to exceed 140 characters");
     } else {
       $.ajax("/tweets", {
         method: "POST",
         data: $(this).serialize(),
-        success: function(data) {
+        success: function (data) {
           console.log(data);
           loadTweets();
           // clearing text area after succesfull submission
@@ -88,5 +86,5 @@ $(document).ready(function() {
         }
       })
     }
-  })
+  });
 });

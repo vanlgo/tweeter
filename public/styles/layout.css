@@ -38,19 +38,25 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
+ /* Desktop changes */
  @media only screen and (min-width: 1024px) {
-   body {
+  body {
      display: flex;
      flex-direction: row;
    }
 
+  nav {
+    background-color: #4056a1;
+   }
+
   .profile {
+    margin-top: 220px;
     width: 33.4%;
      float: left;
    }
 
   .container {
-    margin-top: 120px;
+    margin-top: 220px;
      width: 66.2%;
    }
 
