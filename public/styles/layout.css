@@ -31,9 +31,28 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: inherit;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ @media only screen and (min-width: 1024px) {
+   body {
+     display: flex;
+     flex-direction: row;
+   }
+
+  .profile {
+    width: 33.4%;
+     float: left;
+   }
+
+  .container {
+    margin-top: 120px;
+     width: 66.2%;
+   }
+
+
+  }

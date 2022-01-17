@@ -1,5 +1,3 @@
-console.log("Is this working?");
-
 $(document).ready(function() {
 
   $("#tweet-text").on("input", function() {

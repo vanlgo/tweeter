@@ -8,9 +8,9 @@
 const renderTweets = (tweets) => {
   // fixing duplication bug
   $("#tweets-container").empty();
+
   for (const tweet of tweets) {
     const thisTweet = createTweetElement(tweet);
-    // changed to post prior to all other data
     $("#tweets-container").prepend(thisTweet);
   }
 };
@@ -80,7 +80,8 @@ $(document).ready(function() {
         success: function(data) {
           console.log(data);
           loadTweets();
-          $("#tweet-text").val("")
+          // clearing text area after succesfull submission
+          $("#tweet-text").val("");
         },
         error: function(error) {
           console.log(error);
